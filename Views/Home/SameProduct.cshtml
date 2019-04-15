@@ -1,0 +1,124 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Product>
+<link href="~/Content/css/Mycss.css" rel="stylesheet" />
+<script>
+    $('.carousel[data-type="multi"] .item').each(function () {
+        var next = $(this).next();
+        if (!next.length) {
+            next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+
+        for (var i = 0; i < 2; i++) {
+            next = next.next();
+            if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+
+            next.children(':first-child').clone().appendTo($(this));
+        }
+    });
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-11 col-md-10 col-centered">
+
+            <div id="carousel" class="carousel slide" data-ride="carousel" data-type="multi" data-interval="2500">
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="carousel-col">
+                            @*<div class="block red  img-responsive">*@
+                            <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew" style="border-radius: 20px">
+                                <img src="~/Images/Products/background.jpg" alt="IMG-PRODUCT">
+
+
+                            </div>
+                            @*</div>*@
+                        </div>
+                    </div>
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <div class="carousel-col">
+
+                                <div class="block2">
+                                    <div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew" style="border-radius: 20px">
+                                        <img src="~/Images/Products/@item.ProductImg" alt="IMG-PRODUCT">
+
+                                        <div class="block2-overlay trans-0-4">
+                                            <div class="block2-btn-addcart w-size1 trans-0-4">
+                                                <!-- Button -->
+                                                <button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+                                                    Add to Cart
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="block2-txt p-t-20">
+                                        <a href="/@item.Meta-@item.ID" data-id="@item.ID" class="block2-name dis-block s-text3 p-b-5">
+                                            @item.ProductName
+                                        </a>
+
+                                        <span class="block2-price m-text6 p-r-5">
+                                            $@item.ProductPrice
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+
+                <!-- Controls -->
+                <div class="left carousel-control">
+                    <a href="#carousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </div>
+                <div class="right carousel-control">
+                    <a href="#carousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        $('.block2-btn-addcart').each(function () {
+            var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+            console.log(nameProduct);
+            var id = $(this).parent().parent().parent().find('.block2-name').data('id');
+            console.log(id);
+
+            $(this).on('click', function () {
+
+                $.ajax({
+                    url: '@Url.Action("AddItem", "Cart")',
+                    data: { productID: id, Quantity: 1, sizeID: 1},
+                    type: 'POST'
+                })
+                    .done(function (data) {
+                        swal(nameProduct, "is added to cart !", "success");
+                        $.ajax({
+                            url: '@Url.Action("HeaderIcon", "Home")',
+                            type: 'GET'
+                        })
+                            .done(function (data) {
+                                $('#headericonBar').html(data);
+                            });
+                    })
+                    .fail(function (data) {
+                        alert("Something fail!");
+                    });
+			});
+		});
+</script>
+
+

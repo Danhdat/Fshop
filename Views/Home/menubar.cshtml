@@ -1,0 +1,15 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Menu >
+
+<div class="wrap_menu">
+    <nav class="menu">
+        <ul class="main_menu">
+            @foreach (var item in Model)
+            {
+                <li style="font-size:20px">
+                    <a href="/@item.Meta">@item.MenuName</a>
+                </li>
+            }
+            
+        </ul>
+    </nav>
+</div>

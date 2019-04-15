@@ -1,0 +1,120 @@
+﻿@model FashionShop.Models.EF.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLayout.cshtml";
+}
+
+<h2>Xoá sản phẩm</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Thể loại")
+
+        <dd>
+            @Html.DisplayFor(model => model.MenuCategory.MenuCateName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Tên sản phẩm")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Giá")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Size")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Màu sắc")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductColor)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Số lượng")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Hình ảnh")
+        </dt>
+
+        <dd>
+            <img src="~/Images/Products/@Model.ProductImg" />
+        </dd>
+
+        <dt>
+            @Html.DisplayName("URL")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Meta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hide)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hide)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Vị trí")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Ngày tạo")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datebegin)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("Mô tả")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay lại", "Index")
+        </div>
+    }
+</div>

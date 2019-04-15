@@ -1,0 +1,36 @@
+﻿@model FashionShop.Models.EF.Category
+
+    <div class='post-body entry-content' id='post-body-1691513458757874022' itemprop='articleBody'>
+        <div id="table-outer">
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td><label>Thể Loại:</label></td>
+                        <td>
+                            <select id="orderFeedBy">
+                                @foreach (var item in Model)
+                                {
+                                    <option selected="" value="published">@item.CategoryName</option>
+                                }
+                            </select>
+                         
+                        </td>
+                    </tr>System.NullReferenceException: 'Object reference not set to an instance of an object.'
+                    <tr><td><label>Chi tiết:</label></td><td><span id="labelSorter"><select disabled=""><option selected="">Loading...</option></select></span></td></tr>
+
+                </tbody>
+            </table>
+        </div>
+        <br />
+
+
+        <button style="
+    background: black;
+    border-radius: 20px;
+    color: white;
+    width: 70px;
+    height: 30px;
+">
+            Seach
+        </button>
+    </div>

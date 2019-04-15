@@ -1,0 +1,23 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Product>
+
+<ul class="bgwhite">
+    @foreach (var item in Model)
+    {
+        <li class="flex-w p-b-20">
+            <a href="/@item.Meta-@item.ID" class="dis-block wrap-pic-w w-size22 m-r-20 trans-0-4 hov4">
+                <img src="~/Images/Products/@item.ProductImg" alt="IMG-PRODUCT" style="border-radius:20px">
+            </a>
+
+            <div class="w-size23 p-t-5">
+                <a href="/@item.Meta-@item.ID" class="s-text20">
+                    @item.ProductName
+                </a>
+
+                <span class="dis-block s-text17 p-t-6">
+                    $@item.ProductPrice
+                </span>
+            </div>
+        </li>
+
+    }
+</ul>

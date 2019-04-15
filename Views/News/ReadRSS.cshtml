@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ReadRss";
+}
+
+<table id="rss">
+    @if (ViewBag.RSSFeed != null)
+    {
+        int i = 0;
+        foreach (var item in ViewBag.RSSFeed)
+        {
+            if (i <= 6)
+            {
+                <tr>
+                    <td>@Html.Raw(item.Description)</td>
+                </tr>
+                i++;
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+</table>
+

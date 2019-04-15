@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FashionShop.Models.EF.News>
+
+@foreach (var item in Model)
+{
+    <div class="p-b-40">
+        <div class="blog-detail-img wrap-pic-w">
+            <img src="~/Images/Products/@item.NewImg" alt="IMG-BLOG">
+        </div>
+
+        <div class="blog-detail-txt p-t-33">
+            <h4 class="p-b-11 m-text24">
+                @item.NewName
+            </h4>
+
+            @*<div class="s-text8 flex-w flex-m p-b-21">
+                <span>
+                    By Admin
+                    <span class="m-l-3 m-r-6">|</span>
+                </span>
+
+                <span>
+                    28 Dec, 2018
+                    <span class="m-l-3 m-r-6">|</span>
+                </span>
+
+                <span>
+                    Cooking, Food
+                    <span class="m-l-3 m-r-6">|</span>
+                </span>
+
+                <span>
+                    8 Comments
+                </span>
+            </div>*@
+
+            <p class="p-b-25">
+                @item.Detail
+            </p>
+
+        </div>
+
+        <div class="flex-m flex-w p-t-20">
+            <span class="s-text20 p-r-20">
+                Tags
+            </span>
+
+            <div class="wrap-tags flex-w">
+                <a href="#" class="tag-item">
+                    Streetstyle
+                </a>
+
+                <a href="#" class="tag-item">
+                    Crafts
+                </a>
+            </div>
+        </div>
+    </div>
+
+}

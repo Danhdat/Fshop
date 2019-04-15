@@ -1,0 +1,12 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Category>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="p-t-6 p-b-8 bo6">
+            <a href="/@item.Meta/tat-ca-san-pham" class="s-text13 p-t-5 p-b-5">
+                @item.CategoryName
+            </a>
+        </li>
+    }
+</ul>

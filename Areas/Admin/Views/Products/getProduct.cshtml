@@ -1,0 +1,89 @@
+﻿@model PagedList.IPagedList<FashionShop.Models.EF.Product>
+@using PagedList.Mvc
+
+
+<table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("STT")
+            </th>
+            <th>
+                @Html.DisplayName("Tên sản phẩm")
+            </th>
+            <th>
+                @Html.DisplayName("Hình ảnh")
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayName("Giá")
+            </th>
+            <th>
+                @Html.DisplayName("Số lượng")
+            </th>
+            <th>
+                @Html.DisplayName("Size")
+            </th>
+            <th>
+                @Html.DisplayName("Chức Năng")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ var numer = 1;}
+        @foreach (var item in Model)
+        {
+            <tr class="odd gradeX">
+                <td>
+                    @Html.Raw(numer++)
+                </td>
+                <td style="text-align:left; white-space:nowrap">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td class="center">
+                    <img src="~/Images/Products/@item.ProductImg" width="50px"/>
+                </td>
+                <td class="center">
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td class="center">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="center">
+                    @Html.DisplayFor(modelItem => item.ProductSize)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="pageIndexs">
+    @for (int i = 1; i <= Model.PageCount; i++)
+    {
+        if (i == Model.PageNumber)
+        {
+            <div class="pagination flex-m flex-w p-t-26 m-t-0" style="cursor:pointer; padding:10px; background-color:black">
+                <span data-id="@i" class="pageIndex" style="color:white">@i</span>
+            </div>
+        }
+        else
+        {
+            <div class="pagination flex-m flex-w p-t-26 m-t-0" style="cursor:pointer; padding:10px; background-color:black">
+                <span data-id="@i" class="pageIndex" style="color:orange">@i</span>
+            </div>
+        }
+     }
+</div>
+
+<script>
+    $(function () {
+        $('.pageIndex').click(function () {
+            var pageIndex = $(this).data('id');
+            var maloai = $('.maloai').data('id');
+            getProduct(maloai, pageIndex)
+        });
+    });
+</script>

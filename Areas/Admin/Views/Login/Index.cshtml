@@ -1,0 +1,61 @@
+﻿@model FashionShop.Models.EF.Admin
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLogin.cshtml";
+}
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class="text-danger", @style="text-align:center"})
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-t-50 p-b-90">
+                <form class="login100-form validate-form flex-sb flex-w">
+                    <span class="login100-form-title p-b-51">
+                        Đăng nhập
+                    </span>
+
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control input100", @autoforcus = "autoforcus", @placeholder= "Tên đăng nhập" })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class="text-danger"})
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                        @Html.PasswordFor(model => model.Password, new { @class = "form0control input100" })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-t-3 p-b-24">
+                        <div class="contact100-form-checkbox">
+                            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                            <label class="label-checkbox100" for="ckb1">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div>
+                            <a href="#" class="txt1">
+                                Quên mật khẩu
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-17">
+                        <button class="login100-form-btn" type="submit">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="dropDownSelect1"></div>
+
+

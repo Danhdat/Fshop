@@ -1,0 +1,24 @@
+﻿@model List<FashionShop.Models.CartItem>
+
+@{ double total = 0;}
+@if(Model.Count > 0)
+{
+    foreach(var item in Model)
+    {
+        total += (double)(item.Product.ProductPrice * item.Quantity);
+    }
+}
+
+<div class="col-md-4 col-sm-6">
+    <div class="shippingbox">
+        <div class="subtotal">
+            <h5>
+               Tổng giá trị:
+            </h5>
+            <span style="color:red">
+                @total.ToString("N0")
+            </span>
+        </div>
+    </div>
+</div>
+

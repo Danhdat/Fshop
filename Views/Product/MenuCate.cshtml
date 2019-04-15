@@ -1,0 +1,64 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Category>
+
+
+<div class="dropdown">
+    @foreach (var item in Model)
+    {
+        <div>
+            <button class="btn btn-show-menu hov-pointer" type="button" data-toggle="dropdown">
+                @item.CategoryName
+            </button>
+            <ul class="dropdown-menu" style="top:5%; left:82px" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation" class="menucate">
+                    @Html.Action("CategoryMenu", "Product", new { id = item.ID })
+                </li>
+            </ul>
+        </div>
+
+    }
+    <br />
+    <h4 class="m-text14 p-b-7">
+        <strong style="font-size:25px; font-family:fantasy">Advanced Seach</strong>
+    </h4>
+    <br />
+
+    <div class='post-body entry-content' id='post-body-1691513458757874022' itemprop='articleBody'>
+        <div id="table-outer">
+            <table border="0">
+                <tbody>
+                    <tr>
+                        <td><label>Thể Loại:</label></td>
+                        <td>
+                            <select id="orderFeedBy">
+                                @foreach (var a in Model)
+                                {
+                                    <option selected="" value="published">@a.CategoryName</option>
+                                }
+                            </select>
+
+                        </td>
+                    </tr>
+                    <tr><td><label>Chi tiết:</label></td><td><span id="labelSorter"><select disabled=""><option selected="">Loading...</option></select></span></td></tr>
+
+                </tbody>
+            </table>
+        </div>
+        <br />
+
+
+        <button style="
+    background: black;
+    border-radius: 20px;
+    color: white;
+    width: 70px;
+    height: 30px;
+">
+            Seach
+        </button>
+    </div>
+
+</div>
+<br />
+<br />
+
+

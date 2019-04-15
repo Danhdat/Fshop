@@ -1,0 +1,51 @@
+﻿@model List<FashionShop.Models.CartItem>
+
+<!-- Header cart noti -->
+<ul class="header-cart-wrapitem">
+    @foreach (var item in Model)
+    {
+        <li class="header-cart-item">
+            <div class="header-cart-item-img">
+                <img src="~/Images/Products/@item.Product.ProductImg" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt">
+                <a href="/@item.Product.Meta-@item.Product.ID/" class="header-cart-item-name">
+                    @item.Product.ProductName
+                </a>
+
+                <span class="header-cart-item-info">
+                    @item.Quantity x $@item.Product.ProductPrice.GetValueOrDefault(0).ToString("N0")
+                </span>
+            </div>
+        </li>
+    }
+</ul>
+
+@{ double total = 0;}
+@if (Model.Count == 0)
+{
+    total = 0;
+}
+else
+{
+    foreach (var i in Model)
+    {
+        total += ((double)(i.Quantity * i.Product.ProductPrice));
+    }
+}
+<div class="header-cart-total" style="color:red">
+    Total: @total.ToString("N0")
+</div>
+
+<div class="header-cart-buttons">
+    <div class="header-cart-wrapbtn">
+        <!-- Button -->
+        <a href="/gio-hang/" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+            Đến giỏ hàng
+        </a>
+    </div>
+</div>
+
+
+

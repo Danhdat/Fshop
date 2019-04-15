@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Index.cshtml";
+}
+
+<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(/Images/Products/contact.png);">
+</section>
+
+<!-- content page -->
+<section class="bgwhite p-t-66 p-b-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-b-30">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.3274055916045!2d106.60997091436643!3d10.862683460566991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a169bb904dd%3A0x2472fa36eeac019c!2sH+%26+Q+Fashion+Shop!5e0!3m2!1svi!2s!4v1528634534962" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
+                <div class="p-r-20 p-r-0-lg">
+                </div>
+            </div>
+
+            <div class="col-md-6 p-b-30" style="padding-left:40px">
+                <h4 class="m-text26 p-b-36 p-t-15">
+                    Send us your message
+                </h4>
+                @using (Html.BeginForm("AddContect", "Contact", FormMethod.Post))
+                {
+                    <div class="bo4 of-hidden size15 m-b-20">
+                        <input class="sizefull s-text7 p-l-22 p-r-22" type="text" id="contactName" name="name" placeholder="Full Name" required>
+                    </div>
+
+                    <div class="bo4 of-hidden size15 m-b-20">
+                        <input class="sizefull s-text7 p-l-22 p-r-22" type="text" id="address" name="address" placeholder="Address" required>
+                    </div>
+
+                    <div class="bo4 of-hidden size15 m-b-20">
+                        <input class="sizefull s-text7 p-l-22 p-r-22" type="tel" id="phoneNumber" name="phone-number" placeholder="Phone Number" required>
+                    </div>
+
+                    <div class="bo4 of-hidden size15 m-b-20">
+                        <input class="sizefull s-text7 p-l-22 p-r-22" type="email" id="email" name="email" placeholder="Email Address" required>
+                    </div>
+
+                    <textarea class="dis-block s-text7 size20 bo4 p-l-22 p-r-22 p-t-13 m-b-20" id="message" name="message" placeholder="Message" required></textarea>
+
+                    <div class="w-size25">
+                        <!-- Button -->
+                        <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" id="btnSend" type="submit">
+                            Send
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>

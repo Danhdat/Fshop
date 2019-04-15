@@ -1,0 +1,19 @@
+﻿.btn:hover, .btn:focus {
+    color: #428bca;
+    text-decoration: none;
+}
+
+
+.txtretroshadow {
+    text-align: center;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    font-size: 45px;
+    color: #000000;
+    letter-spacing: .05em;
+    text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+.header1{
+    position:absolute;
+}
+

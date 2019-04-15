@@ -1,0 +1,140 @@
+﻿<div class="col-md-4 col-sm-6">
+    <!--Thông tin khác hàng-->
+    <div class="shippingbox">
+        <h5>
+            Thông tin khác hàng
+        </h5>
+
+        @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+        {
+            <form>
+                <label>
+                    Họ và tên
+                </label>
+                <input type="text" id="CustumerName" name="txtCustumer" placeholder="Tên khách hàng..." style="padding-left:0px" required />
+
+                <label>
+                    Số điện thoại
+                </label>
+                <input type="tel" id="Telephone" name="txtPhone" placeholder="Số điện thoại..." style="padding-left:0px" required />
+
+                <!--Thông Đất nước-->
+                <label>
+                    Đất Nước
+                </label>
+                <select id="selCountry" , name="textCountry" required>
+
+                </select>
+
+                <!--Thông tin tỉnh-->
+                <label>
+                    Tỉnh/Thành Phố
+                </label>
+                <select id="selProvince" , name="textProvince" required>
+                    <option value="">--Tỉnh/Thành Phố--</option>
+                </select>
+
+                <!--Thông tin Quận, Huyện-->
+                <label>
+                    Quận/Huyện
+                </label>
+                <select id="selDistrict" , name="textDistrict" required>
+                    <option value="">
+                        --Quận/Huyện--
+                    </option>
+                </select>
+
+                <!--Thông tin Phường, Xã-->
+                <label>
+                    Phường/Xã
+                </label>
+                <select id="selWard" , name="textWard" required>
+                    <option value="">
+                        --Phường/Xã--
+                    </option>
+                </select>
+
+                <label>
+                    Đường
+                </label>
+                <input type="text" id="txtRoad" name="txtRoad" placeholder="Tên Đường..." style="padding-left:0px" required />
+
+                <div class="clearfix"></div>
+                <button type="submit" id="btnPayment">
+                    Thanh Toán
+                </button>
+            </form>
+        }
+
+    </div>
+</div>
+
+<script>
+    function getCountry() {
+        $.ajax({
+            url: '@Url.Action("getAllCountries", "Cart")',
+            type: 'GET',
+            dataType: 'json',
+        })
+            .done(function (data) {
+                var html = '';
+                $.each(data, function (i, item) {
+                    html += '<option value="' + item.Id + '">' + item.CommonName + '</option>';
+                });
+                $('#selCountry').html(html);
+            });
+    }
+
+    $(function () {
+
+        getCountry();
+
+        $('#selCountry').on('change', function () {
+            var CountryId = $(this).val();
+            $.ajax({
+                url: '/Cart/getAllProvincesByCountryId/',
+                dataType: 'Json',
+                data: { id: CountryId },
+            })
+                .done(function (data) {
+                    var html = '';
+                    $.each(data, function (i, item) {
+                        html += '<option value="' + item.Id + '">' + item.Name + '</option>';
+                    });
+                    $('#selProvince').html(html);
+                });
+        });
+
+        $('#selProvince').on('change', function () {
+            var ProvinceId = $(this).val();
+            $.ajax({
+                url: '/Cart/getAllDistrictsByProvinceId/',
+                dataType: 'Json',
+                data: { id: ProvinceId },
+            })
+                .done(function (data) {
+                    var html = '';
+                    $.each(data, function (i, item) {
+                        html += '<option value="' + item.Id + '">' + item.Name + '</option>';
+                    });
+                    $('#selDistrict').html(html);
+                });
+        });
+
+        $('#selDistrict').on('change', function () {
+            var DistrictId = $(this).val();
+            $.ajax({
+                url: '/Cart/getAllWardsByDistrictId/',
+                dataType: 'Json',
+                data: { id: DistrictId },
+            })
+                .done(function (data) {
+                    var html = '';
+                    $.each(data, function (i, item) {
+                        html += '<option value="' + item.Id + '">' + item.Name + '</option>';
+                    });
+                    $('#selWard').html(html);
+                });
+        });
+    });
+</script>

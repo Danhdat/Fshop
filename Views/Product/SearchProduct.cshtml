@@ -1,0 +1,50 @@
+﻿<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+@*<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"/>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+
+<style>
+    #ui-id-1 {
+        position: absolute;
+        top: 329px;
+        left: 427.5px;
+        background-color: white;
+        opacity: 0.8;
+        width: 239.094px;
+        display: none;
+    }
+</style>
+
+@using (Html.BeginForm("Product", "Product"))
+{
+    <div class="search-product pos-relative bo4 of-hidden">
+        <input class="form-control" id="seachInput" type="text" name="search-product" placeholder="Search Products...">
+
+        <button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4" type="submit">
+            <i class="fs-12 fa fa-search" aria-hidden="true"></i>
+        </button>
+    </div>
+    
+}
+<script>
+    $("#seachInput").autocomplete({
+        source: function (request, response) {
+            $.ajax({
+                url: '@Url.Action("GetSeachValue","Product")',
+                dataType: "json",
+                data: { seach: $("#seachInput").val() },               
+                success: function (data) {
+                    
+                    response($.map(data, function (item) {
+                        
+                        return { lable: item.ProductName, value: item.ProductName };
+
+                    }));
+                },
+                error: function (xhr, status, error) {
+                    alert("Error");
+                }
+            });
+           
+        }
+    }); 
+</script>

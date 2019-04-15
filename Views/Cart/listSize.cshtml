@@ -1,0 +1,6 @@
+﻿@model IEnumerable<FashionShop.Models.EF.Size>
+
+@foreach (var item in Model)
+{
+    <option value="@item.ID">@item.SizeName</option>
+}

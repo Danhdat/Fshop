@@ -1,0 +1,6 @@
+﻿@model IEnumerable<FashionShop.Models.EF.MenuCategory>
+
+@foreach (var item in Model)
+{
+    <a role="menuitem" tabindex="-1" href="@item.Meta-@item.ID">@item.MenuCateName</a>
+}
